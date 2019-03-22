@@ -16,7 +16,7 @@ const App = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React Тест прекоммита
+          Learn React Тест прекоммита Тест
         </a>
       </header>
     </div>

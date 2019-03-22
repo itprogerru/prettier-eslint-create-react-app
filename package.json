@@ -41,13 +41,16 @@
     }
   },
   "lint-staged": {
-    "ignore": ["src/serviceWorker.js", "*.test.js"],
     "linters": {
-      "*.{js,jsx}": [
+      "*.{js,jsx},!**/src/serviceWorker.js,!*.test.js ": [
         "pretty-quick --staged",
         "eslint src/ --fix",
         "git add"
       ]
-    }
+    },
+    "ignore": [
+      "**/src/serviceWorker.js",
+      "*.test.js"
+    ]
   }
 }
