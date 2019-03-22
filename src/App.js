@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import List from './list'
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
           Learn React Тест прекоммита Тестещё тест
         </a>
       </header>
+      <List/>
     </div>
   );
 };
