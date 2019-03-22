@@ -11,13 +11,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "precommit": "npm run lint-staged"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
   },
-
   "browserslist": [
     ">0.2%",
     "not dead",
@@ -37,11 +35,17 @@
     "prettier": "^1.16.4",
     "pretty-quick": "^1.10.0"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "lint-staged": {
-  "*.{js,jsx}": [
-    "pretty-quick --staged",
-    "eslint src/ --fix",
-    "git add"
-  ]
-}
+    "ignore": ["src/serviceWorker.js", "*.test.js"],
+    "*.{js,jsx}": [
+      "pretty-quick --staged",
+      "eslint src/ --fix",
+      "git add"
+    ]
+  }
 }
