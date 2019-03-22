@@ -1,68 +1,106 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Установка Eslint & Prettier в create-react-app
 
-## Available Scripts
+Нужно установить
+```
+create-react-app projectName 
+```
 
-In the project directory, you can run:
+Eslint, это конфигурация от Airbnb и необходимые пакеты…
+```javascript
+npm i -D eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react
 
-### `npm start`
+yarn add --dev eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```
+и
+Prettier, это конфигурация, чтобы избежать конфликта с Eslint и необходимыми пакетами…
+```javascript
+npm i -D prettier eslint-config-prettier eslint-plugin-prettier
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+yarn add --dev prettier eslint-config-prettier eslint-plugin-prettier
+```
 
-### `npm test`
+Чтобы не коммитилось если есть ошибки нужны следующие пакеты
+```javascript
+npm i -D husky lint-staged pretty-quick
+```
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+husky: Will run npm script before the committing the code.
 
-### `npm run build`
+lint-staged: Запустит пользовательский скрипт на отфильтрованных файлах с расширениями, такими как .js или .jsx
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+pretty-quick: Предварительно подтвердит ваш код.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+package.json
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Добавить в script 
+```json
+"precommit": "NODE_ENV=production lint-staged"
+```
 
-### `npm run eject`
+вниз 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```json
+"lint-staged": {
+  "*.{js,jsx}": [
+    "pretty-quick --staged",
+    "eslint src/ --fix",
+    "git add"
+  ]
+}
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+добавить .eslintrc в коррень
+```json
+{
+  "extends": ["airbnb", "prettier", "prettier/react"],
+  "plugins": ["prettier"],
+  "rules": {
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".js", ".jsx"]
+      }
+    ],
+    "react/prop-types": 0,
+    "no-underscore-dangle": 0,
+    "import/imports-first": ["error", "absolute-first"],
+    "import/newline-after-import": "error"
+  },
+  "globals": {
+    "window": true,
+    "document": true,
+    "localStorage": true,
+    "FormData": true,
+    "FileReader": true,
+    "Blob": true,
+    "navigator": true
+  },
+  "parser": "babel-eslint"
+}
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+добавить .prettierrc в коррень
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```json
+{
+  "singleQuote": true
+}
+```
 
-## Learn More
+Visual Studio Code
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Eslint
+Prettier
+There are some settings you have to do for making these extensions workable.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+```javascript
+{
+  "files.autoSave": "onFocusChange",
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "eslint.autoFixOnSave": true,
+  "eslint.enable": true,
+  "prettier.singleQuote": true,
+}
+```
