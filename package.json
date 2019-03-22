@@ -12,6 +12,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "precommit": "npm run lint-staged"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -36,11 +37,6 @@
     "prettier": "^1.16.4",
     "pretty-quick": "^1.10.0"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-     }
- },
   "lint-staged": {
   "*.{js,jsx}": [
     "pretty-quick --staged",
