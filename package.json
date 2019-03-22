@@ -47,10 +47,6 @@
         "eslint src/ --fix",
         "git add"
       ]
-    },
-    "ignore": [
-      "**/src/serviceWorker.js",
-      "*.test.js"
-    ]
+    }
   }
 }

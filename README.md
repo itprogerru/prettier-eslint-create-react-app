@@ -104,3 +104,27 @@ There are some settings you have to do for making these extensions workable.
   "prettier.singleQuote": true,
 }
 ```
+
+Добавить env jest
+```json
+"env": {
+    "jest": true
+  },
+```
+
+Подправит package.json
+```json
+"husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  
+  
+```
+и удалить так как устаревшая технология
+```json
+"precommit": "NODE_ENV=production lint-staged"
+```
+
+добавить .prettierignore и .eslintignore
