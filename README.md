@@ -209,3 +209,38 @@ There are some settings you have to do for making these extensions workable.
 <a href="https://alligator.io/react/linting-react/" rel="nofollow">Linting React Using ESLint with Create React App ← Alligator.io</a><br>
 <a href="https://www.robinwieruch.de/react-eslint-webpack-babel/" rel="nofollow">React Code Style with ESLint + Babel + Webpack - RWieruch</a><br>
 <a href="https://blog.gojekengineering.com/eslint-prettier-for-a-consistent-react-codebase-eaa673debb1d" rel="nofollow">ESLint + Prettier For a Consistent React Codebase – GO-JEK Product + Tech</a></p>
+
+# add airbnb
+
+<code> npm install --save-dev eslint-config-airbnb  eslint-plugin-jsx-a11y eslin
+       t-plugin-import
+ </code>
+ 
+ ```json
+{
+    "parser": "babel-eslint",
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true,
+        "node": true
+    },
+    "plugins": [
+        "react",
+        "prettier"
+    ],
+    "extends": ["airbnb","plugin:prettier/recommended", "plugin:react/recommended", "eslint:recommended"],
+    "rules": {
+        "quotes": [1, "single", "avoid-escape"],
+        "react/prop-types": 0,
+        "no-console": 1,
+        "no-unused-vars": 1,
+        "no-debugger": 2,
+        "no-func-assign": 2,
+        "no-const-assign": 2,
+        "no-var": 2,
+        "eqeqeq": 2,
+        "react/react-in-jsx-scope": 0
+    }
+}
+```
